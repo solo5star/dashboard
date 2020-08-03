@@ -1,3 +1,5 @@
+![demo](https://github.com/solo5star/dashboard/blob/master/demo.png?raw=true)
+
 # dashboard
 
 Setup monitoring system with **Grafana**+**Prometheus**
