@@ -1,0 +1,59 @@
+version: "3"
+services:
+  grafana:
+    image: grafana/grafana:latest
+    network_mode: host
+    depends_on:
+      - prometheus
+    user: $UID
+    restart: unless-stopped
+    volumes:
+      - $PWD/grafana/data:/var/lib/grafana
+    environment:
+      - GF_SERVER_HTTP_PORT=9098
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/grafana
+      - GF_SERVER_DOMAIN=grafana
+
+  prometheus:
+    image: prom/prometheus:latest
+    network_mode: host
+    user: $UID
+    restart: unless-stopped
+    volumes:
+      - $PWD/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - $PWD/prometheus/data:/prometheus
+    command:
+      - --web.listen-address=:9099
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=90d
+      - --storage.tsdb.retention.size=10GB
+      - --web.console.libraries=/usr/share/prometheus/console_libraries
+      - --web.console.templates=/usr/share/proemtheus/consoles
+      - --web.enable-admin-api
+
+  cadvisor:
+    image: gcr.io/google-containers/cadvisor
+    ports:
+      - "9101:8080"
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    privileged: true
+
+  node-exporter:
+    image: quay.io/prometheus/node-exporter
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /:/host:ro,rslave
+    pid: host
+    command:
+      - --path.rootfs=/host
