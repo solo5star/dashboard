@@ -1,6 +1,7 @@
 version: "3"
 services:
   grafana:
+    container_name: grafana
     image: grafana/grafana:latest
     network_mode: host
     depends_on:
@@ -16,6 +17,7 @@ services:
       - GF_SERVER_DOMAIN=grafana
 
   prometheus:
+    container_name: prometheus
     image: prom/prometheus:latest
     network_mode: host
     user: $UID
@@ -34,6 +36,7 @@ services:
       - --web.enable-admin-api
 
   cadvisor:
+    container_name: cadvisor
     image: gcr.io/google-containers/cadvisor
     ports:
       - "9101:8080"
@@ -49,6 +52,7 @@ services:
     privileged: true
 
   node-exporter:
+    container_name: node-exporter
     image: quay.io/prometheus/node-exporter
     network_mode: host
     restart: unless-stopped
