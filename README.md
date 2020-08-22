@@ -9,12 +9,15 @@ Setup monitoring system with **Grafana**+**Prometheus**
 * Docker Usage (cadvisor)
 
 # Installation
-`up.sh` contains `mkdir`, `chown` and `docker-compose up -d`
 ```bash
 $ git clone https://github.com/solo5star/dashboard
 $ cd dashboard
-$ chmod u+x *.sh
-$ ./up.sh
+$ docker-compose up -d
 ```
 
-You can access grafana web interface with `http://localhost:9098`
+You can access grafana web interface with `http://localhost:3000`
+
+... 
+
+# Source
+* Dashboard preset: https://github.com/stefanprodan/dockprom

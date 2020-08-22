@@ -4,28 +4,23 @@ global:
 
   # Attach these extra labels to all timeseries collected by this Prometheus instance.
   external_labels:
-    monitor: 'codelab-monitor'
+    monitor: 'dashboard'
 
 rule_files:
   - 'prometheus.rules.yml'
 
 scrape_configs:
-  #- job_name: 'prometheus'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
-    #scrape_interval: 5s
-
-    #static_configs:
-      #- targets: ['localhost:9090']
-
   - job_name: 'node-exporter'
-    # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
-
     static_configs:
-      - targets: ['localhost:9100']
+      - targets: ['node-exporter:9100']
 
   - job_name: 'cadvisor'
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9101']
+      - targets: ['cadvisor:8080']
+
+  - job_name: 'prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['localhost:9090']
