@@ -16,7 +16,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 4,
+  "id": 5,
+  "iteration": 1598160163823,
   "links": [],
   "panels": [
     {
@@ -63,6 +64,7 @@
         "defaults": {
           "custom": {},
           "decimals": 0,
+          "displayName": "Uptime",
           "mappings": [
             {
               "id": 0,
@@ -84,36 +86,11 @@
           },
           "unit": "s"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Uptime"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "s"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CPU Cores"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "none"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 4,
         "x": 0,
         "y": 3
       },
@@ -131,7 +108,7 @@
         },
         "graphMode": "none",
         "justifyMode": "auto",
-        "orientation": "vertical",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -149,13 +126,82 @@
           "legendFormat": "Uptime",
           "refId": "A",
           "step": 30
+        }
+      ],
+      "timeFrom": "10s",
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "displayName": "CPU Cores",
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 3
+      },
+      "hideTimeOverride": true,
+      "id": 61,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": [
+            "mean"
+          ]
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
         {
           "expr": "machine_cpu_cores",
           "instant": true,
           "interval": "",
+          "intervalFactor": 1,
           "legendFormat": "CPU Cores",
-          "refId": "B"
+          "refId": "A",
+          "step": 30
         }
       ],
       "timeFrom": "10s",
@@ -494,21 +540,13 @@
       }
     },
     {
-      "cacheTimeout": null,
       "datasource": "Prometheus",
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
+          "displayName": "CPU Usage",
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -528,49 +566,21 @@
           },
           "unit": "percent"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CPU Usage"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percent"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "CPU Temp"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "celsius"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 4,
         "x": 0,
         "y": 7
       },
-      "hideTimeOverride": true,
-      "id": 13,
-      "interval": null,
+      "id": 64,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "background",
         "graphMode": "area",
         "justifyMode": "auto",
-        "orientation": "vertical",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -581,22 +591,85 @@
       "pluginVersion": "7.0.1",
       "targets": [
         {
-          "expr": "sum(rate(node_cpu_seconds_total{mode!=\"idle\"}[1m])) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
-          "instant": false,
-          "interval": "10s",
+          "expr": "sum(rate(node_cpu_seconds_total{mode!=\"idle\"}[1m])) by (instance) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "CPU Usage",
+          "metric": "node_cpu_seconds_total",
           "refId": "A",
-          "step": 20
-        },
-        {
-          "expr": "max(node_hwmon_temp_celsius) by (instance)",
-          "interval": "",
-          "legendFormat": "CPU Temp",
-          "refId": "B"
+          "step": 10
         }
       ],
-      "timeFrom": "10s",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "CPU Temperature",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 70
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 7
+      },
+      "id": 63,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "avg(node_hwmon_temp_celsius) by (instance)",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "CPU Temperature",
+          "metric": "node_cpu_seconds_total",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "",
       "transparent": true,
       "type": "stat"
@@ -815,9 +888,6 @@
           "interval": "",
           "legendFormat": "Memory",
           "refId": "A"
-        },
-        {
-          "refId": "B"
         }
       ],
       "timeFrom": null,
@@ -1097,6 +1167,7 @@
         "defaults": {
           "custom": {},
           "decimals": 0,
+          "displayName": "{{ mountpoint }}",
           "mappings": [
             {
               "from": "",
@@ -1142,7 +1213,7 @@
       "pluginVersion": "7.0.1",
       "targets": [
         {
-          "expr": "1 - (node_filesystem_avail_bytes{fstype=~\"ext4|fuseblk\"} / node_filesystem_size_bytes{fstype=~\"ext4|fuseblk\"})",
+          "expr": "1 - (node_filesystem_avail_bytes{fstype=~\"$fstypes\"} / node_filesystem_size_bytes{fstype=~\"$fstypes\"})",
           "interval": "",
           "legendFormat": "{{ mountpoint }}",
           "refId": "A"
@@ -1161,6 +1232,7 @@
         "defaults": {
           "custom": {},
           "decimals": 1,
+          "displayName": "Current",
           "mappings": [
             {
               "id": 0,
@@ -1202,7 +1274,7 @@
             "mean"
           ]
         },
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
@@ -1215,8 +1287,8 @@
       "pluginVersion": "7.0.1",
       "targets": [
         {
-          "expr": "node_filesystem_size_bytes{fstype=~\"ext4|fuseblk\"} - node_filesystem_free_bytes{fstype=~\"ext4|fuseblk\"}",
-          "instant": false,
+          "expr": "node_filesystem_size_bytes{fstype=~\"$fstypes\"} - node_filesystem_free_bytes{fstype=~\"$fstypes\"}",
+          "instant": true,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Current",
@@ -1236,6 +1308,7 @@
         "defaults": {
           "custom": {},
           "decimals": 1,
+          "displayName": "Max",
           "mappings": [
             {
               "id": 0,
@@ -1277,7 +1350,7 @@
             "mean"
           ]
         },
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
@@ -1291,7 +1364,7 @@
       "targets": [
         {
           "expr": "node_filesystem_size_bytes{fstype=~\"ext4|fuseblk\"}",
-          "instant": false,
+          "instant": true,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Max",
@@ -1359,7 +1432,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "1 - (node_filesystem_avail_bytes{fstype=~\"ext4|fuseblk\"} / node_filesystem_size_bytes{fstype=~\"ext4|fuseblk\"})",
+          "expr": "1 - (node_filesystem_avail_bytes{fstype=~\"$fstypes\"} / node_filesystem_size_bytes{fstype=~\"$fstypes\"})",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{ mountpoint }}",
@@ -1635,19 +1708,19 @@
       "pluginVersion": "7.0.1",
       "targets": [
         {
-          "expr": "sum(irate(node_network_transmit_bytes_total{device!=\"lo\"}[1m]))",
+          "expr": "sum(irate(node_network_receive_bytes_total{device!=\"lo\"}[1m]))",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Download",
+          "legendFormat": "Upload",
           "metric": "node_network_receive_bytes_total",
           "refId": "A",
           "step": 1
         },
         {
-          "expr": "sum(irate(node_network_receive_bytes_total{device!=\"lo\"}[1m]))",
+          "expr": "sum(irate(node_network_transmit_bytes_total{device!=\"lo\"}[1m]))",
           "interval": "",
-          "legendFormat": "Upload",
+          "legendFormat": "Download",
           "refId": "B"
         }
       ],
@@ -1782,7 +1855,28 @@
     "system"
   ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "ext4|fuseblk",
+          "value": "ext4|fuseblk"
+        },
+        "hide": 2,
+        "label": "File System Types",
+        "name": "fstypes",
+        "options": [
+          {
+            "selected": true,
+            "text": "ext4|fuseblk",
+            "value": "ext4|fuseblk"
+          }
+        ],
+        "query": "ext4|fuseblk",
+        "skipUrlSync": false,
+        "type": "constant"
+      }
+    ]
   },
   "time": {
     "from": "now-15m",
@@ -1815,5 +1909,5 @@
   "timezone": "browser",
   "title": "System",
   "uid": "h5LcytHGz",
-  "version": 12
+  "version": 4
 }
