@@ -17,7 +17,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 5,
-  "iteration": 1598160163823,
+  "iteration": 1598349737196,
   "links": [],
   "panels": [
     {
@@ -391,7 +391,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Temp",
+      "title": "Temperature",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -793,13 +793,74 @@
       }
     },
     {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "decimals": 1,
+          "displayName": "CPU Usage",
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 70,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "sum(rate(container_cpu_usage_seconds_total{image!=\"\"}[1m])) by (name)",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 15
       },
       "id": 56,
       "panels": [],
@@ -819,7 +880,7 @@
         "h": 2,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 16
       },
       "id": 36,
       "mode": "html",
@@ -866,7 +927,7 @@
         "h": 5,
         "w": 6,
         "x": 0,
-        "y": 14
+        "y": 18
       },
       "id": 29,
       "options": {
@@ -918,7 +979,7 @@
         "h": 8,
         "w": 18,
         "x": 6,
-        "y": 14
+        "y": 18
       },
       "hiddenSeries": false,
       "id": 6,
@@ -1020,7 +1081,7 @@
       },
       "yaxes": [
         {
-          "format": "decbytes",
+          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1068,7 +1129,7 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "bytes"
         },
         "overrides": []
       },
@@ -1076,7 +1137,7 @@
         "h": 3,
         "w": 6,
         "x": 0,
-        "y": 19
+        "y": 23
       },
       "hideTimeOverride": true,
       "id": 2,
@@ -1125,13 +1186,68 @@
       "type": "stat"
     },
     {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 1,
+          "displayName": "Memory Usage",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-orange",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 68,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "sum(container_memory_usage_bytes{image!=\"\"}) by (name)",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 30
       },
       "id": 58,
       "panels": [],
@@ -1151,7 +1267,7 @@
         "h": 2,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 31
       },
       "id": 37,
       "mode": "html",
@@ -1195,7 +1311,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 25
+        "y": 33
       },
       "id": 46,
       "options": {
@@ -1213,9 +1329,10 @@
       "pluginVersion": "7.0.1",
       "targets": [
         {
-          "expr": "1 - (node_filesystem_avail_bytes{fstype=~\"$fstypes\"} / node_filesystem_size_bytes{fstype=~\"$fstypes\"})",
+          "expr": "sum(1 - (node_filesystem_avail_bytes{fstype=~\"$fstypes\"} / node_filesystem_size_bytes{fstype=~\"$fstypes\"})) by (device)",
+          "instant": false,
           "interval": "",
-          "legendFormat": "{{ mountpoint }}",
+          "legendFormat": "{{ device }}",
           "refId": "A"
         }
       ],
@@ -1260,7 +1377,7 @@
         "h": 8,
         "w": 3,
         "x": 6,
-        "y": 25
+        "y": 33
       },
       "hideTimeOverride": true,
       "id": 4,
@@ -1336,7 +1453,7 @@
         "h": 8,
         "w": 3,
         "x": 9,
-        "y": 25
+        "y": 33
       },
       "hideTimeOverride": true,
       "id": 47,
@@ -1399,7 +1516,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 25
+        "y": 33
       },
       "hiddenSeries": false,
       "id": 48,
@@ -1506,7 +1623,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 25
+        "y": 33
       },
       "hiddenSeries": false,
       "id": 7,
@@ -1621,13 +1738,625 @@
       }
     },
     {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "Power On Hours",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 0,
+        "y": 41
+      },
+      "id": 81,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "smartmon_power_on_hours_raw_value",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Power On Hours ({{ disk }})",
+          "metric": "node_cpu_seconds_total",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "Power Cycle",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 3,
+        "y": 41
+      },
+      "id": 76,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "smartmon_power_cycle_count_raw_value",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Power Cycle ({{ disk }})",
+          "metric": "node_cpu_seconds_total",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "Temperature",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 55
+              },
+              {
+                "color": "red",
+                "value": 60
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 6,
+        "y": 41
+      },
+      "id": 79,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "smartmon_temperature_celsius_raw_value",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Temperature ({{ disk }})",
+          "metric": "node_cpu_seconds_total",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "Current Pending Sector",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 2,
+        "x": 9,
+        "y": 41
+      },
+      "id": 75,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "smartmon_current_pending_sector_raw_value",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Current Pending Sector ({{ disk }})",
+          "metric": "node_cpu_seconds_total",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "Reallocated Event",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 2,
+        "x": 11,
+        "y": 41
+      },
+      "id": 77,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "smartmon_reallocated_event_count_raw_value",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Reallocated Event ({{ disk }})",
+          "metric": "node_cpu_seconds_total",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "Reallocated Sector",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 2,
+        "x": 13,
+        "y": 41
+      },
+      "id": 78,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "smartmon_reallocated_sector_ct_raw_value",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Reallocated Sector ({{ disk }})",
+          "metric": "node_cpu_seconds_total",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "UDMA CRC Error",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 2,
+        "x": 15,
+        "y": 41
+      },
+      "id": 80,
+      "links": [],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "smartmon_udma_crc_error_count_raw_value",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "UDMA CRC Error ({{ disk }})",
+          "metric": "node_cpu_seconds_total",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "decimals": 2,
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 17,
+        "y": 41
+      },
+      "hiddenSeries": false,
+      "id": 74,
+      "isNew": true,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "localhost:9100",
+          "color": "#F2495C"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "smartmon_temperature_celsius_raw_value",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ disk }}",
+          "metric": "node_cpu_seconds_total",
+          "refId": "A",
+          "step": 10
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Temperature",
+      "tooltip": {
+        "msResolution": true,
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": false,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "celsius",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": false
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 1,
+          "displayName": "Disk Usage",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 66,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "sum(container_fs_usage_bytes{image!=\"\"}) by (name)",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 52
       },
       "id": 60,
       "panels": [],
@@ -1647,7 +2376,7 @@
         "h": 2,
         "w": 24,
         "x": 0,
-        "y": 34
+        "y": 53
       },
       "id": 52,
       "mode": "html",
@@ -1662,6 +2391,8 @@
       "fieldConfig": {
         "defaults": {
           "custom": {},
+          "decimals": 1,
+          "displayName": "Upload",
           "mappings": [
             {
               "from": "",
@@ -1681,7 +2412,7 @@
               }
             ]
           },
-          "unit": "decbits"
+          "unit": "bps"
         },
         "overrides": []
       },
@@ -1689,9 +2420,9 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 36
+        "y": 55
       },
-      "id": 43,
+      "id": 73,
       "links": [],
       "options": {
         "colorMode": "background",
@@ -1708,7 +2439,7 @@
       "pluginVersion": "7.0.1",
       "targets": [
         {
-          "expr": "sum(irate(node_network_receive_bytes_total{device!=\"lo\"}[1m]))",
+          "expr": "sum(irate(node_network_transmit_bytes_total{device!=\"lo\"}[1m]))",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
@@ -1718,10 +2449,14 @@
           "step": 1
         },
         {
-          "expr": "sum(irate(node_network_transmit_bytes_total{device!=\"lo\"}[1m]))",
+          "expr": "sum(irate(node_network_receive_bytes_total{device!=\"lo\"}[1m]))",
+          "instant": false,
           "interval": "",
+          "intervalFactor": 1,
           "legendFormat": "Download",
-          "refId": "B"
+          "metric": "node_network_receive_bytes_total",
+          "refId": "B",
+          "step": 1
         }
       ],
       "timeFrom": null,
@@ -1752,7 +2487,7 @@
         "h": 8,
         "w": 18,
         "x": 6,
-        "y": 36
+        "y": 55
       },
       "hiddenSeries": false,
       "id": 8,
@@ -1771,7 +2506,7 @@
       "lines": true,
       "linewidth": 2,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "dataLinks": []
       },
@@ -1829,7 +2564,7 @@
           "format": "bps",
           "label": null,
           "logBase": 1,
-          "max": "104857600",
+          "max": null,
           "min": 0,
           "show": true
         },
@@ -1846,6 +2581,116 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 1,
+          "displayName": "Upload",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 63
+      },
+      "id": 72,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "sum(rate(container_network_transmit_bytes_total{image!=\"\"}[1m])) by (name)",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 1,
+          "displayName": "Download",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 67
+      },
+      "id": 71,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "expr": "sum(rate(container_network_receive_bytes_total{image!=\"\"}[1m])) by (name)",
+          "interval": "",
+          "legendFormat": "{{ name }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "stat"
     }
   ],
   "refresh": "10s",
@@ -1909,5 +2754,5 @@
   "timezone": "browser",
   "title": "System",
   "uid": "h5LcytHGz",
-  "version": 4
+  "version": 17
 }
