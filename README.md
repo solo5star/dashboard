@@ -18,7 +18,7 @@ Setup monitoring system with **Grafana**+**Prometheus**
 You can access web interface with `http://<host>:<port>`.
 
 |Docker Image|Container Name|Description|Port|
-|-|-|-|
+|-|-|-|-|
 |grafana/grafana|grafana|Visualize monitoring data with datasource `prometheus`.|3000|
 |prom/prometheus|prometheus|Pull metrics data from each exporter and store them.|9090|
 |gcr.io/google-containers/cadvisor|cadvisor|Collect data related to docker containers.|8080|
