@@ -61,10 +61,20 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
 
+  script-exporter:
+    container_name: script-exporter
+    image: solo5star/script-exporter
+    restart: unless-stopped
+    network_mode: host
+    privileged: true
+    volumes:
+      - $PWD/script-exporter/scripts:/scripts
+      - /sys:/sys:ro
+      - /dev/disk:/dev/disk:ro
+    environment:
+      - REQUIRE_PACKAGES=smartmontools
+
 volumes:
   grafana: {}
   prometheus: {}
 
-networks:
-  dashboard:
-    driver: bridge
