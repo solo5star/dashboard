@@ -8,10 +8,6 @@ services:
     volumes:
       - grafana:/var/lib/grafana
       - $PWD/grafana/provisioning:/etc/grafana/provisioning
-    environment:
-      - GF_SERVER_SERVE_FROM_SUB_PATH=true
-      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/grafana
-      - GF_SERVER_DOMAIN=grafana
 
   prometheus:
     container_name: prometheus
@@ -35,6 +31,7 @@ services:
     image: gcr.io/google-containers/cadvisor
     restart: unless-stopped
     network_mode: host
+    privileged: true
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
@@ -43,18 +40,17 @@ services:
       - /dev/disk/:/dev/disk:ro
     devices:
       - /dev/kmsg
-    privileged: true
 
   node-exporter:
     container_name: node-exporter
     image: prom/node-exporter
     restart: unless-stopped
     network_mode: host
+    pid: host
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-    pid: host
     command:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
