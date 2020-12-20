@@ -17,7 +17,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 5,
-  "iteration": 1598349737196,
+  "iteration": 1608479616136,
   "links": [],
   "panels": [
     {
@@ -806,8 +806,12 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "dark-blue",
+                "color": "rgb(128, 128, 128)",
                 "value": null
+              },
+              {
+                "color": "dark-blue",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1197,8 +1201,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-orange",
+                "color": "rgb(128, 128, 128)",
                 "value": null
+              },
+              {
+                "color": "dark-orange",
+                "value": 0
               }
             ]
           },
@@ -2306,8 +2314,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-green",
+                "color": "rgb(128, 128, 128)",
                 "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 0
               }
             ]
           },
@@ -2594,8 +2606,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-purple",
+                "color": "rgb(128, 128, 128)",
                 "value": null
+              },
+              {
+                "color": "dark-purple",
+                "value": 0
               }
             ]
           },
@@ -2649,8 +2665,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-purple",
+                "color": "rgb(128, 128, 128)",
                 "value": null
+              },
+              {
+                "color": "dark-purple",
+                "value": 0
               }
             ]
           },
@@ -2693,7 +2713,7 @@
       "type": "stat"
     }
   ],
-  "refresh": "10s",
+  "refresh": "30s",
   "schemaVersion": 25,
   "style": "dark",
   "tags": [
@@ -2724,7 +2744,7 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -2754,5 +2774,5 @@
   "timezone": "browser",
   "title": "System",
   "uid": "h5LcytHGz",
-  "version": 17
+  "version": 19
 }
