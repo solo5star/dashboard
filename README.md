@@ -21,9 +21,9 @@ You can access web interface with `http://<host>:<port>`.
 |-|-|-|-|
 |grafana/grafana|grafana|Visualize monitoring data with datasource `prometheus`.|3000|
 |prom/prometheus|prometheus|Pull metrics data from each exporter and store them.|9090|
-|gcr.io/google-containers/cadvisor|cadvisor|Collect data related to docker containers.|8080|
-|prom/node-exporter|node-exporter|Collect data related to system.|9100|
-|solo5star/script-exporter|script-exporter|Collect output of script. `smartmon.sh` is included to collect data related to S.M.A.R.T.|9109|
+|gcr.io/google-containers/cadvisor|cadvisor|Collect containers data.|8080|
+|prom/node-exporter|node-exporter|Collect system data.|9100|
+|solo5star/script-exporter|script-exporter|Collect output of script. `smartmon.sh` is included to collect S.M.A.R.T data|9109|
 
 <br>
 
