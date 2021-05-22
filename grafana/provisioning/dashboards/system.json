@@ -17,7 +17,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 5,
-  "iteration": 1608479616136,
+  "iteration": 1621706753373,
   "links": [],
   "panels": [
     {
@@ -31,16 +31,12 @@
       },
       "id": 54,
       "panels": [],
-      "title": "",
       "type": "row"
     },
     {
-      "content": "<h1>CPU<h1>",
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "gridPos": {
@@ -50,10 +46,13 @@
         "y": 1
       },
       "id": 51,
-      "mode": "html",
+      "options": {
+        "content": "<h1>CPU<h1>",
+        "mode": "html"
+      },
+      "pluginVersion": "7.5.7",
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "text"
     },
@@ -62,7 +61,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "displayName": "Uptime",
           "mappings": [
@@ -74,7 +72,6 @@
               "value": "null"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -113,10 +110,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "node_time_seconds - node_boot_time_seconds",
@@ -129,7 +129,6 @@
         }
       ],
       "timeFrom": "10s",
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -138,7 +137,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "displayName": "CPU Cores",
           "mappings": [
@@ -150,7 +148,6 @@
               "value": "null"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -189,10 +186,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "machine_cpu_cores",
@@ -205,7 +205,6 @@
         }
       ],
       "timeFrom": "10s",
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -220,7 +219,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -252,9 +251,10 @@
       "links": [],
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -328,7 +328,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -360,9 +360,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -441,7 +442,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -471,9 +472,10 @@
       "links": [],
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -544,7 +546,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "displayName": "CPU Usage",
           "mappings": [],
           "thresholds": {
@@ -585,10 +586,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(rate(node_cpu_seconds_total{mode!=\"idle\"}[1m])) by (instance) * 100 / scalar(count(node_cpu_seconds_total{mode=\"user\"}))",
@@ -602,7 +606,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -611,7 +614,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "displayName": "CPU Temperature",
           "mappings": [],
           "thresholds": {
@@ -652,10 +654,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "avg(node_hwmon_temp_celsius) by (instance)",
@@ -670,7 +675,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -684,7 +688,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -714,9 +718,10 @@
       "links": [],
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -796,11 +801,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "decimals": 1,
-          "displayName": "CPU Usage",
           "mappings": [],
           "thresholds": {
             "mode": "percentage",
@@ -839,12 +840,16 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
+          "exemplar": true,
           "expr": "sum(rate(container_cpu_usage_seconds_total{image!=\"\"}[1m])) by (name)",
           "interval": "",
           "legendFormat": "{{ name }}",
@@ -853,7 +858,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -868,16 +872,12 @@
       },
       "id": 56,
       "panels": [],
-      "title": "",
       "type": "row"
     },
     {
-      "content": "<h1>Memory<h1>",
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "gridPos": {
@@ -887,10 +887,13 @@
         "y": 16
       },
       "id": 36,
-      "mode": "html",
+      "options": {
+        "content": "<h1>Memory<h1>",
+        "mode": "html"
+      },
+      "pluginVersion": "7.5.7",
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "text"
     },
@@ -898,7 +901,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "mappings": [
             {
@@ -943,10 +945,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100",
@@ -957,7 +962,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -972,7 +976,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -1004,9 +1008,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1067,7 +1072,6 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -1112,7 +1116,6 @@
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 1,
           "mappings": [
             {
@@ -1123,7 +1126,6 @@
               "value": "null"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1162,10 +1164,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes",
@@ -1185,7 +1190,6 @@
         }
       ],
       "timeFrom": "10s",
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -1193,9 +1197,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 1,
-          "displayName": "Memory Usage",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1230,10 +1232,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(container_memory_usage_bytes{image!=\"\"}) by (name)",
@@ -1244,7 +1249,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -1259,16 +1263,12 @@
       },
       "id": 58,
       "panels": [],
-      "title": "",
       "type": "row"
     },
     {
-      "content": "<h1>Disk<h1>",
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "gridPos": {
@@ -1278,10 +1278,13 @@
         "y": 31
       },
       "id": 37,
-      "mode": "html",
+      "options": {
+        "content": "<h1>Disk<h1>",
+        "mode": "html"
+      },
+      "pluginVersion": "7.5.7",
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "text"
     },
@@ -1289,9 +1292,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
-          "displayName": "{{ mountpoint }}",
           "mappings": [
             {
               "from": "",
@@ -1331,10 +1332,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(1 - (node_filesystem_avail_bytes{fstype=~\"$fstypes\"} / node_filesystem_size_bytes{fstype=~\"$fstypes\"})) by (device)",
@@ -1346,7 +1350,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -1355,7 +1358,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 1,
           "displayName": "Current",
           "mappings": [
@@ -1367,7 +1369,6 @@
               "value": "null"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1406,10 +1407,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "node_filesystem_size_bytes{fstype=~\"$fstypes\"} - node_filesystem_free_bytes{fstype=~\"$fstypes\"}",
@@ -1422,7 +1426,6 @@
         }
       ],
       "timeFrom": "10s",
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -1431,7 +1434,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 1,
           "displayName": "Max",
           "mappings": [
@@ -1443,7 +1445,6 @@
               "value": "null"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1482,10 +1483,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "node_filesystem_size_bytes{fstype=~\"ext4|fuseblk\"}",
@@ -1498,7 +1502,6 @@
         }
       ],
       "timeFrom": "10s",
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -1513,7 +1516,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -1545,9 +1548,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1620,7 +1624,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -1652,9 +1656,10 @@
       "links": [],
       "nullPointMode": "connected",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1749,7 +1754,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "displayName": "Power On Hours",
           "mappings": [],
           "thresholds": {
@@ -1782,10 +1786,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "smartmon_power_on_hours_raw_value",
@@ -1801,7 +1808,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -1809,7 +1815,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "displayName": "Power Cycle",
           "mappings": [],
           "thresholds": {
@@ -1842,10 +1847,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "smartmon_power_cycle_count_raw_value",
@@ -1861,7 +1869,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -1869,7 +1876,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "displayName": "Temperature",
           "mappings": [],
           "thresholds": {
@@ -1910,10 +1916,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "smartmon_temperature_celsius_raw_value",
@@ -1929,7 +1938,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -1937,7 +1945,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "displayName": "Current Pending Sector",
           "mappings": [],
           "thresholds": {
@@ -1974,10 +1981,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "smartmon_current_pending_sector_raw_value",
@@ -1993,7 +2003,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -2001,7 +2010,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "displayName": "Reallocated Event",
           "mappings": [],
           "thresholds": {
@@ -2038,10 +2046,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "smartmon_reallocated_event_count_raw_value",
@@ -2057,7 +2068,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -2065,7 +2075,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "displayName": "Reallocated Sector",
           "mappings": [],
           "thresholds": {
@@ -2102,10 +2111,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "smartmon_reallocated_sector_ct_raw_value",
@@ -2121,7 +2133,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -2129,7 +2140,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "displayName": "UDMA CRC Error",
           "mappings": [],
           "thresholds": {
@@ -2166,10 +2176,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "smartmon_udma_crc_error_count_raw_value",
@@ -2185,7 +2198,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -2200,7 +2212,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -2232,9 +2244,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2306,7 +2319,6 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 1,
           "displayName": "Disk Usage",
           "mappings": [],
@@ -2343,10 +2355,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(container_fs_usage_bytes{image!=\"\"}) by (name)",
@@ -2357,7 +2372,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -2372,16 +2386,12 @@
       },
       "id": 60,
       "panels": [],
-      "title": "",
       "type": "row"
     },
     {
-      "content": "<h1>Network<h1>",
       "datasource": null,
       "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
+        "defaults": {},
         "overrides": []
       },
       "gridPos": {
@@ -2391,10 +2401,13 @@
         "y": 53
       },
       "id": 52,
-      "mode": "html",
+      "options": {
+        "content": "<h1>Network<h1>",
+        "mode": "html"
+      },
+      "pluginVersion": "7.5.7",
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "text"
     },
@@ -2402,9 +2415,7 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 1,
-          "displayName": "Upload",
           "mappings": [
             {
               "from": "",
@@ -2445,10 +2456,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(irate(node_network_transmit_bytes_total{device!=\"lo\"}[1m]))",
@@ -2473,7 +2487,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -2488,7 +2501,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -2520,9 +2533,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.7",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2554,7 +2568,6 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -2598,9 +2611,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 1,
-          "displayName": "Upload",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2635,10 +2646,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(rate(container_network_transmit_bytes_total{image!=\"\"}[1m])) by (name)",
@@ -2649,7 +2663,6 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     },
@@ -2657,9 +2670,7 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 1,
-          "displayName": "Download",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2694,10 +2705,13 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.1",
+      "pluginVersion": "7.5.7",
       "targets": [
         {
           "expr": "sum(rate(container_network_receive_bytes_total{image!=\"\"}[1m])) by (name)",
@@ -2708,13 +2722,12 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "",
       "transparent": true,
       "type": "stat"
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 25,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [
     "system"
@@ -2722,21 +2735,11 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "ext4|fuseblk",
-          "value": "ext4|fuseblk"
-        },
+        "description": null,
+        "error": null,
         "hide": 2,
         "label": "File System Types",
         "name": "fstypes",
-        "options": [
-          {
-            "selected": true,
-            "text": "ext4|fuseblk",
-            "value": "ext4|fuseblk"
-          }
-        ],
         "query": "ext4|fuseblk",
         "skipUrlSync": false,
         "type": "constant"
@@ -2774,5 +2777,5 @@
   "timezone": "browser",
   "title": "System",
   "uid": "h5LcytHGz",
-  "version": 19
+  "version": 21
 }
