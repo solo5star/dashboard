@@ -17,7 +17,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 5,
-  "iteration": 1621706753373,
+  "iteration": 1621927642936,
   "links": [],
   "panels": [
     {
@@ -2320,7 +2320,6 @@
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
-          "displayName": "Disk Usage",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2777,5 +2776,5 @@
   "timezone": "browser",
   "title": "System",
   "uid": "h5LcytHGz",
-  "version": 21
+  "version": 23
 }
