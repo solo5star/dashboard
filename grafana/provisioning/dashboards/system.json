@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 1,
-  "iteration": 1627226427568,
+  "id": 5,
+  "iteration": 1627229323120,
   "links": [],
   "panels": [
     {
@@ -812,7 +812,7 @@
               },
               {
                 "color": "dark-blue",
-                "value": 0
+                "value": 0.0001
               },
               {
                 "color": "red",
@@ -2553,7 +2553,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -2583,5 +2583,5 @@
   "timezone": "browser",
   "title": "System",
   "uid": "h5LcytHGz",
-  "version": 3
+  "version": 26
 }
