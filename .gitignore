@@ -1,0 +1,4 @@
+data/grafana/*
+data/prometheus/*
+!data/grafana/init
+!data/prometheus/init
