@@ -5,20 +5,18 @@ services:
     image: grafana/grafana
     restart: unless-stopped
     network_mode: host
-    user: "1000:1000"
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
-      - ./data/grafana:/var/lib/grafana
+      - grafana:/var/lib/grafana
 
   prometheus:
     container_name: prometheus
     image: prom/prometheus
     restart: unless-stopped
     network_mode: host
-    user: "1000:1000"
     volumes:
       - ./prometheus:/etc/prometheus
-      - ./data/prometheus:/prometheus
+      - prometheus:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -68,3 +66,6 @@ services:
     privileged: true
     network_mode: host
 
+volumes:
+  grafana:
+  prometheus:
