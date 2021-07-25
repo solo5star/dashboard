@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": 5,
-  "iteration": 1621927642936,
+  "id": 1,
+  "iteration": 1627226427568,
   "links": [],
   "panels": [
     {
@@ -1341,6 +1341,7 @@
       "pluginVersion": "7.5.7",
       "targets": [
         {
+          "exemplar": true,
           "expr": "sum(1 - (node_filesystem_avail_bytes{fstype=~\"$fstypes\"} / node_filesystem_size_bytes{fstype=~\"$fstypes\"})) by (device)",
           "instant": false,
           "interval": "",
@@ -1754,7 +1755,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "displayName": "Power On Hours",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1795,12 +1795,13 @@
       "pluginVersion": "7.5.7",
       "targets": [
         {
-          "expr": "smartmon_power_on_hours_raw_value",
+          "exemplar": true,
+          "expr": "smartprom_Power_On_Hours_raw",
           "hide": false,
           "instant": true,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Power On Hours ({{ disk }})",
+          "legendFormat": "Power On Hours ({{ drive }})",
           "metric": "node_cpu_seconds_total",
           "refId": "A",
           "step": 10
@@ -1815,7 +1816,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "displayName": "Power Cycle",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1856,12 +1856,13 @@
       "pluginVersion": "7.5.7",
       "targets": [
         {
-          "expr": "smartmon_power_cycle_count_raw_value",
+          "exemplar": true,
+          "expr": "smartprom_Power_Cycle_Count_raw",
           "hide": false,
           "instant": true,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Power Cycle ({{ disk }})",
+          "legendFormat": "Power Cycle ({{ drive }})",
           "metric": "node_cpu_seconds_total",
           "refId": "A",
           "step": 10
@@ -1876,7 +1877,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "displayName": "Temperature",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1925,12 +1925,13 @@
       "pluginVersion": "7.5.7",
       "targets": [
         {
-          "expr": "smartmon_temperature_celsius_raw_value",
+          "exemplar": true,
+          "expr": "smartprom_Temperature_Celsius_raw",
           "hide": false,
           "instant": true,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Temperature ({{ disk }})",
+          "legendFormat": "Temperature ({{ drive }})",
           "metric": "node_cpu_seconds_total",
           "refId": "A",
           "step": 10
@@ -1945,202 +1946,6 @@
       "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
-          "displayName": "Current Pending Sector",
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 2,
-        "x": 9,
-        "y": 41
-      },
-      "id": 75,
-      "links": [],
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.5.7",
-      "targets": [
-        {
-          "expr": "smartmon_current_pending_sector_raw_value",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Current Pending Sector ({{ disk }})",
-          "metric": "node_cpu_seconds_total",
-          "refId": "A",
-          "step": 10
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "transparent": true,
-      "type": "stat"
-    },
-    {
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "displayName": "Reallocated Event",
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 2,
-        "x": 11,
-        "y": 41
-      },
-      "id": 77,
-      "links": [],
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.5.7",
-      "targets": [
-        {
-          "expr": "smartmon_reallocated_event_count_raw_value",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Reallocated Event ({{ disk }})",
-          "metric": "node_cpu_seconds_total",
-          "refId": "A",
-          "step": 10
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "transparent": true,
-      "type": "stat"
-    },
-    {
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "displayName": "Reallocated Sector",
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 2,
-        "x": 13,
-        "y": 41
-      },
-      "id": 78,
-      "links": [],
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.5.7",
-      "targets": [
-        {
-          "expr": "smartmon_reallocated_sector_ct_raw_value",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Reallocated Sector ({{ disk }})",
-          "metric": "node_cpu_seconds_total",
-          "refId": "A",
-          "step": 10
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "transparent": true,
-      "type": "stat"
-    },
-    {
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "displayName": "UDMA CRC Error",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2161,8 +1966,8 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 2,
-        "x": 15,
+        "w": 3,
+        "x": 9,
         "y": 41
       },
       "id": 80,
@@ -2185,12 +1990,13 @@
       "pluginVersion": "7.5.7",
       "targets": [
         {
-          "expr": "smartmon_udma_crc_error_count_raw_value",
+          "exemplar": true,
+          "expr": "smartprom_UDMA_CRC_Error_Count_raw",
           "hide": false,
           "instant": true,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "UDMA CRC Error ({{ disk }})",
+          "legendFormat": "UDMA CRC Error ({{ drive }})",
           "metric": "node_cpu_seconds_total",
           "refId": "A",
           "step": 10
@@ -2221,8 +2027,8 @@
       "grid": {},
       "gridPos": {
         "h": 7,
-        "w": 7,
-        "x": 17,
+        "w": 6,
+        "x": 12,
         "y": 41
       },
       "hiddenSeries": false,
@@ -2262,11 +2068,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "smartmon_temperature_celsius_raw_value",
+          "exemplar": true,
+          "expr": "smartprom_Temperature_Celsius_raw",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{ disk }}",
+          "legendFormat": "{{ drive }}",
           "metric": "node_cpu_seconds_total",
           "refId": "A",
           "step": 10
@@ -2746,7 +2553,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -2776,5 +2583,5 @@
   "timezone": "browser",
   "title": "System",
   "uid": "h5LcytHGz",
-  "version": 23
+  "version": 3
 }
