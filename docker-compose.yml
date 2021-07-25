@@ -42,6 +42,8 @@ services:
       - /dev/disk/:/dev/disk:ro
     devices:
       - /dev/kmsg
+    command:
+      - '-port=9250'
 
   node-exporter:
     container_name: node-exporter
